@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+body{background:#1c2748;padding:30px;font-family:sans-serif;}
+.sn{display:inline-flex;align-items:center;gap:1px;vertical-align:middle;}
+.sn img{height:28px;width:auto;display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.65));}
+.row{margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.badge{height:26px;}
+.hpchip{background:rgba(20,4,4,.88);border:1px solid #ff6b6b;border-radius:5px;padding:4px 8px;display:inline-flex;}
+.hpchip .sn img{height:15px;}
+.pownote{background:rgba(20,4,4,.9);border:1px solid #ff6b6b;border-radius:4px;padding:3px 6px;color:#ff6b6b;font-weight:900;display:inline-flex;gap:6px;align-items:center;}
+.pownote .sn img{height:13px;}
+</style></head>
+<body>
+<div class="row"><span class="sn" id="a"></span></div>
+<div class="row"><img class="badge" src="/images/numbers/badge_x2_gold.png"><span class="sn" id="b"></span></div>
+<div class="row"><span class="hpchip"><span class="sn" id="c"></span></span></div>
+<div class="row"><span class="pownote">①<span class="sn" id="d"></span></span><span class="pownote">②<span class="sn" id="e"></span></span></div>
+<script>
+function sn(id, value, tone, sign) {
+  const neg = value < 0;
+  const t = tone || (neg ? 'red' : 'gold');
+  const el = document.getElementById(id);
+  let html = '';
+  if (sign) html += `<img src="/images/numbers/sign_${neg ? 'minus_red' : 'plus_gold'}.png">`;
+  for (const d of String(Math.abs(value))) html += `<img src="/images/numbers/digit_${t}_${d}.png">`;
+  el.innerHTML = html;
+}
+sn('a', 1234, 'red', false);
+sn('b', 888, 'gold', false);
+sn('c', 250, 'red', false);
+sn('d', 300, null, true);
+sn('e', -200, null, true);
+</script>
+</body></html>
